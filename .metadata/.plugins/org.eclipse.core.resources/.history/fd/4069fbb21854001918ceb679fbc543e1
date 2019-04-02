@@ -1,0 +1,32 @@
+
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/servletProc")
+public class servletProc extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    public servletProc() {
+        super();
+      
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");//한글이 있으면 한글로 인식해라
+		String name = request.getParameter("name");
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		String hobby[] = request.getParameterValues("hobby");
+		String major = request.getParameter("hero");
+		
+	}
+
+}

@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Tue Apr 02 16:00:17 KST 2019
+org.eclipse.jst.jee.server\:StartJSP=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\StartJSP
+org.eclipse.jst.jee.server\:Login_Project=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\Login_Project
