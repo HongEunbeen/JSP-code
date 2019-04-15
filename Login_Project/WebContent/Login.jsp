@@ -23,7 +23,6 @@
 <title>로그인 폼</title>
 </head>
 <body>
-	<center>
 		<form name = "frm01" action = "loginProc.jsp" method = "post">
 			<table border = 1>
 				<tr>
@@ -42,6 +41,5 @@
 				</tr>
 			</table>
 		</form>
-	</center>
 </body>
 </html>
