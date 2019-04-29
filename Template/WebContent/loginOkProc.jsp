@@ -7,13 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	[로그인 성공] <br>
 	<%
 		request.setCharacterEncoding("UTF-8");
-		//String strNumber = request.getParameter("number");
-		int number = Integer.parseInt(request.getParameter("number"));
-		if(number <= 10){
-			out.print("입력 받은 숫자는 " + number + "이고, 10보다 작습니다."); 
-		}
+		String id = request.getParameter("id");
 	%>
+	<b><font color = "yellowgreen" size = 6> <%= id %></font>님의 방문을 축하합니다.</b>
 </body>
 </html>

@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel = "stylesheet" href = "css.css" type = "test/css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+	<form action = "loginProc1.jsp" method = "post"><!-- post의 장점은 보안 -->
 		<table border = "1">
 			<tr>
 				<td>아이디</td>
