@@ -17,25 +17,45 @@
 	
 	Date date = new Date();
 	Long time = date.getTime();
-	
+	//out.println(time);
 	String filename = time + ".txt";
 	
-	PrintWriter writer = null;//out으로 변수명 x
+	PrintWriter writer = null;
 	
-	try{
-		String filePath = application.getRealPath("/WEB-INF/dbs/" + filename);
+	try {
+		String filePath = application.getRealPath("/WEB-INF/bbs/" + filename);
 		writer = new PrintWriter(filePath);
-		writer.printf("제목 : %s %n", title);//파일 축력
-		writer.println("글쓴이 : " + name + "<br>");
-		writer.println("내용 : " + content + "<br>");
-		out.print("게시물이 저장되었습니다.");//웹 브라우저 출력
-		writer.flush();//반드시 작성해 주어야 됨
-	}catch(Exception e){
-		e.printStackTrace();
-	}finally{
+		writer.printf("제목 : %s %n", title);
+		writer.printf("글쓴이 : %s %n", name);
+		writer.println(content);
+		
+		out.println("<font color='red'>게시물</font>이 저장되었습니다.");
+		writer.flush();
+	}
+	catch(Exception e) {
+		out.println("오류발생");
+	}
+	finally {
 		writer.close();
 	}
 	
 %>
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

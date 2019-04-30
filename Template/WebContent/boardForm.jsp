@@ -4,3 +4,4 @@
 <jsp:forward page="templateTest.jsp">
 	<jsp:param name="CONTENTPAGE" value="boardFormProc.jsp"/>
 </jsp:forward>
+
