@@ -9,4 +9,40 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!--모든 페이지가 다 공유 할 수 있다.(application 영역) -->
+ <context-param>
+ 	<description>주석</description>
+ 	<param-name>logEnabled</param-name>
+ 	<param-value>true</param-value>
+ </context-param>
+ 
+  <context-param>
+ 	<description>주석</description>
+ 	<param-name>debugLevel</param-name>
+ 	<param-value>5</param-value>
+ </context-param>
+
+  <servlet>
+  	<servlet-name>xxxx</servlet-name>
+  	<jsp-file>/study_03.jsp</jsp-file>
+  	<init-param>
+  		<param-name>id</param-name>
+  		<param-value>hong</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>pw</param-name>
+  		<param-value>1234</param-value>
+  	</init-param>  	
+  	<init-param>
+  		<param-name>name</param-name>
+  		<param-value>홍길동</param-value>
+  	</init-param> 
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>xxxx</servlet-name>
+	<url-pattern>/mirim.do</url-pattern>  
+  </servlet-mapping>
+
 </web-app>

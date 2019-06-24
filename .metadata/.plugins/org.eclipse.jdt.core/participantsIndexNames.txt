@@ -9,6 +9,8 @@ C:\JSP_Study\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\37258
 \Template\src
 C:\JSP_Study\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3656118738.index
 \Templet\src
+C:\JSP_Study\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\576103560.index
+\chapter08\src
 C:\JSP_Study\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\206782725.index
 \StartJSP\src
 C:\JSP_Study\Project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1923529865.index

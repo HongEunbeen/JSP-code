@@ -32,12 +32,11 @@
 
 <pre>
 	* JSP에서 기본적으로 제공되는 내장객체는 9개(시험문제 x)
-	
-	- request, response, out : 입출력과 관련
-	- session, application, pageContext : 현재 실행되는 외부환경 정보와 관련
-	- page : jsp 페이지 그 차제를 의미
-	- config : 서블릿을 초기화 하는 동안 참조할 정보를 전해주는 역할
-	- exception : 예외 객체
+		- request, response, out : 입출력과 관련
+		- session, application, pageContext : 현재 실행되는 외부환경 정보와 관련
+		- page : jsp 페이지 그 차제를 의미
+		- config : 서블릿을 초기화 하는 동안 참조할 정보를 전해주는 역할
+		- exception : 예외 객체
 	request, reponse, session 가장 중요
 </pre>
 
