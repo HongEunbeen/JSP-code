@@ -15,7 +15,6 @@
 %>
 <table width = "800" border ="1" cellpadding ="2" cellspacing ="0">
 	<tr>
-	<tr>
 		<td colspan=2>
 			<jsp:include page="top.jsp" flush="false"/>
 		</td>

@@ -22,7 +22,7 @@
  	<param-name>debugLevel</param-name>
  	<param-value>5</param-value>
  </context-param>
-
+<!--서블릿 큵래스에 대한 설정 (config 영역) -->
   <servlet>
   	<servlet-name>xxxx</servlet-name>
   	<jsp-file>/study_03.jsp</jsp-file>
@@ -39,7 +39,7 @@
   		<param-value>홍길동</param-value>
   	</init-param> 
   </servlet>
-
+  
   <servlet-mapping>
 	<servlet-name>xxxx</servlet-name>
 	<url-pattern>/mirim.do</url-pattern>  
