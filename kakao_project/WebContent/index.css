@@ -1,0 +1,255 @@
+body{
+    background: #FFEB33 0% 0% no-repeat padding-box;
+}
+#logo{
+    position: fixed;
+    top: 167px;
+    left: 79px;
+    width: 257px;
+    height: 246px;
+}
+#server-btn{
+    position: fixed;
+    top: 439px;
+    left: 60px;
+    width: 132px;
+    height: 135px;
+    background: #F6F6F6;
+    text-align: center;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#client-btn{
+    position: fixed;
+    top: 439px;
+    left: 222px;
+    width: 132px;
+    height: 135px;
+    background: #F6F6F6;
+    text-align: center;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#logo-text{
+    position: fixed;
+    top: 165px;
+    left: 75px;
+    width: 265px;
+    height: 68px;
+    text-align: left;
+    font: Bold 50px/68px Noto Sans;
+    letter-spacing: 0;
+    color: #423630;
+    opacity: 1;
+}
+#ip-text{
+    position: fixed;
+    top: 267px;
+    left: 21px;
+    width: 53px;
+    height: 48px;
+    text-align: center;
+    font: Regular 35px/47px Segoe UI;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#ip-input{
+    position: fixed;
+    top: 262px;
+    left: 93px;
+    width: 291px;
+    height: 58px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #9C9C9C;
+    border-radius: 10px 10px 0px 0px;
+    opacity: 1;
+}
+#port-text{
+    position: fixed;
+    top: 324px;
+    left: 2px;
+    width: 91px;
+    height: 48px;
+    text-align: center;
+    font: Regular 30px/40px Segoe UI;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#port-input{
+    position: fixed;
+    top: 319px;
+    left: 93px;
+    width: 291px;
+    height: 58px;
+    transform: matrix(-1, 0, 0, -1, 0, 0);
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #9C9C9C;
+    border-radius: 10px 10px 0px 0px;
+    opacity: 1;
+}
+#name-text{
+    position: fixed;
+    top: 413px;
+    left: 22px;
+    width: 52px;
+    height: 30px;
+    text-align: center;
+    font: Regular 30px/36px 12LotteMartDreamMedium;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#name-input{
+    position: fixed;
+    top: 401px;
+    left: 93px;
+    width: 290px;
+    height: 53px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #C2C2C2;
+    border-radius: 10px;
+    opacity: 1;
+}
+#start-btn{
+    position: fixed;
+    top: 542px;
+    left: 76px;
+    width: 262px;
+    height: 67px;
+    background: #F6F6F6 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+    text-align: center;
+}
+#my-ip{
+    position: fixed;
+    top: 8px;
+    left: 91px;
+    width: 232px;
+    height: 20px;
+    text-align: center;
+    font: Regular 20px/24px 12LotteMartDreamMedium;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#name-input{ position: fixed;
+    top: 36px;
+    left: 112px;
+    width: 190px;
+    height: 34px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+}
+#name-btn{
+    position: fixed;
+    top: 36px;
+    left: 308px;
+    width: 66px;
+    height: 34px;
+    background: #F6F6F6 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+}
+#info-div{ position: fixed;
+    top: 92px;
+    left: 30px;
+    width: 354px;
+    height: 32px;
+    background: #404040 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+}
+#info-text{ position: fixed;
+    top: 100px;
+    left: 54px;
+    width: 306px;
+    height: 18px;
+    text-align: center;
+    font: Regular 18px/22px 12LotteMartDreamLight;
+    letter-spacing: 0;
+    color: #FFFFFF;
+    opacity: 1;
+}
+#you-div{
+    height: 45px;
+    opacity: 1;
+}
+#you-name{ 
+    width: 40px;
+    height: 23px;
+    text-align: center;
+    font: Regular 23px/28px 12LotteMartDreamMedium;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#you-talk-div{ 
+    position: fixed;
+    left: 62px;
+    width: 279px;
+    height: 45px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+}
+#you-talk-text{
+    text-align: center;
+    font: Regular 23px/28px 12LotteMartDreamMedium;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#i-div{
+    height: 45px;
+    opacity: 1;
+}
+#i-name{ 
+    width: 60px;
+    height: 23px;
+    text-align: center;
+    font: Regular 23px/28px 12LotteMartDreamMedium;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#i-talk-div{ 
+    position: fixed;
+    left: 62px;
+    width: 279px;
+    height: 45px;
+    background: #FFEB33 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+}
+#i-talk-text{ 
+    text-align: center;
+    font: Regular 23px/28px 12LotteMartDreamMedium;
+    letter-spacing: 0;
+    color: #707070;
+    opacity: 1;
+}
+#input-div{ position: fixed;
+    top: 676px;
+    left: 0px;
+    width: 414px;
+    height: 60px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+#chat-text{ position: fixed;
+    top: 685px;
+    left: 10px;
+    width: 347px;
+    height: 42px;
+    background: #F6F6F6 0% 0% no-repeat padding-box;
+    border: 1px solid #969696;
+    border-radius: 20px;
+    opacity: 1;
+}
+
