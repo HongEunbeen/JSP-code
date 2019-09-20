@@ -165,13 +165,13 @@
 	      <Context docBase="EL_study" path="/EL_study" reloadable="true" source="org.eclipse.jst.jee.server:EL_study"/>
 	      <Context docBase="JSTL_study" path="/JSTL_study" reloadable="true" source="org.eclipse.jst.jee.server:JSTL_study"/>
 	      <Context docBase="chapter11" path="/chapter11" reloadable="true" source="org.eclipse.jst.jee.server:chapter11"/>
-	      	<Context docBase="DBCP_Project" 
-			      	path="/DBCP_Project" 
-			      	reloadable="true" 
-			      	source="org.eclipse.jst.jee.server:DBCP_Project">
+      		<Context docBase="DBCP_Project" path="/DBCP_Project" reloadable="true" source="org.eclipse.jst.jee.server:DBCP_Project">
+      			<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxWait="5000" name="basicjsp" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3307/mirim" username="test"/>
+      		</Context>
+	      	<Context docBase="Cafeteria_Project" path="/Cafeteria_Project" reloadable="true" source="org.eclipse.jst.jee.server:Cafeteria_Project">
 	      		<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxWait="5000" name="basicjsp" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3307/mirim" username="test"/>
 	      	</Context>
-      	</Host>
+      	<Context docBase="App_store" path="/App_store" reloadable="true" source="org.eclipse.jst.jee.server:App_store"/></Host>
     </Engine>
   </Service>
 </Server>

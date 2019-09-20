@@ -1,4 +1,4 @@
-<%@page import="mirim.hs.kr.Member"%>
+<%@page import="mirim.hs.kr.MemberM"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,16 +9,16 @@
 </head>
 <body>
 	<%
-		Member mem = new Member();
-		mem.setId("Hong");
-		mem.setName("홍길동");
-		mem.setPw("1234");
+		MemberM mem = new MemberM();
+			mem.setId("Hong");
+			mem.setName("홍길동");
+			mem.setPw("1234");
 	%>
-	ID : <%=mem.getId() %> <br>
-	이름 : <%=mem.getName() %> <br>
-	PW : <%=mem.getPw() %> <br><br>
+	ID : <%=mem.getId()%> <br>
+	이름 : <%=mem.getName()%> <br>
+	PW : <%=mem.getPw()%> <br><br>
 
-	<jsp:useBean id="member" class="mirim.hs.kr.Member"/>
+	<jsp:useBean id="member" class="mirim.hs.kr.MemberM"/>
 	<jsp:setProperty name="member" property="name" value="홍길동"/>
 	<jsp:setProperty name="member" property="id" value="hong"/>
 	<jsp:setProperty name="member" property="pw" value="1234"/>
