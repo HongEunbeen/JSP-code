@@ -12,32 +12,50 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
  </head>
 <body>
+<%
+		String userID = null;
+	
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		
+	%>
 <div class="jumbotron text-center" style="margin-bottom:0">
 	  <h1>급식 알리미</h1>
 	  <p>미림여자정보과학고등학교 급식 알리미</p> 
 	</div>
 	
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	<nav class="navbar navbar-expand-sm bg-light justify-content-center">
 	    <ul class="navbar-nav nav-justified">
 	      <li class="nav-item active">
 	        <a class="nav-link" href="index.jsp">급식 검색하기</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">급식표 보기</a>
+	        <a class="nav-link" href="cafeteria.jsp">급식표 보기</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">BMI 보기</a>
-	      </li>   
-	      <li class="nav-item dropdown">
-		    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">로그인</a>
-		    <div class="dropdown-menu">
-		      <a class="dropdown-item" href="login.jsp">로그인</a>
-		      <a class="dropdown-item" href="join.jsp">회원가입</a>
-		    </div>
-		  </li> 
-	    </ul>
-	  </div>  
+	        <a class="nav-link" href="bmi.jsp">BMI 보기</a>
+	      </li> 
+	      <%if (userID == null) {
+			%>
+				<li class="nav-item dropdown">
+				    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">로그인</a>
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="login.jsp">로그인</a>
+				      <a class="dropdown-item" href="join.jsp">회원가입</a>
+				    </div>
+				  </li> 
+		<%
+			} else {
+		%>
+			 <li class="nav-item">
+		        <a class="nav-link" href="logout.jsp">로그아웃하기</a>
+		      </li> 
+		<%
+			}
+			%>  
+	      
+	    </ul>  
 	</nav>
 	<div class="container">
 	    <div class="row">

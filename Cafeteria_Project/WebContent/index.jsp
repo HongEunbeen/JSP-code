@@ -1,3 +1,6 @@
+<%@page import="mirim.hs.kr.MenuDAO"%>
+<%@page import="mirim.hs.kr.Menu"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page import="java.sql.*, javax.sql.*, javax.naming.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,21 +24,26 @@
 <body>
 <%
 		String userID = null;
+		String date1 = null;
+		String date2 = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
+
+		if (request.getParameter("date1") != null) {
+			date1 = (String) request.getParameter("date1");
+		}
+		if (request.getParameter("date2") != null) {
+			date2 = (String) request.getParameter("date2");
+		}
+		
 	%>
 	<div class="jumbotron text-center" style="margin-bottom:0">
 	  <h1>급식 알리미</h1>
 	  <p>미림여자정보과학고등학교 급식 알리미</p> 
 	</div>
 	
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	  <a class="navbar-brand" href="#">Navbar</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	<nav class="navbar navbar-expand-sm bg-light justify-content-center">
 	    <ul class="navbar-nav nav-justified">
 	      <li class="nav-item active">
 	        <a class="nav-link" href="index.jsp">급식 검색하기</a>
@@ -65,16 +73,19 @@
 			}
 			%>  
 	      
-	    </ul>
-	  </div>  
+	    </ul>  
 	</nav>
+	
 	<div class="container">
 	    <div class="row">
-	    	<form action = "indexProc.jsp" method ="post">
+	    	<form action = "index.jsp" method ="get">
 	    	  <div class="input-group mb-3">
 			  <label for="example-date-input" class="col-2 col-form-label">Date</label>
-			  <div class="col-10">
-			    <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+			  <div class="col-5">
+			    <input class="form-control" type="date" name="date1" min="2019-09-01" max="2019-09-30" id="example-date-input" value="<%=date1%>">
+			  </div>
+			  <div class="col-5">
+			    <input class="form-control" type="date" name="date2" min="2019-09-01" max="2019-09-30" id="example-date-input" value="<%=date2%>">
 			  </div>
 			</div>
 			  <div class="input-group mb-3">
@@ -82,37 +93,34 @@
 			</div>
 	    	</form>
 	    </div>
+	    <div class="row">
+		  <h2>9월 급식</h2>
+		  <p>미림여자정보과학고등학교</p>            
+		  <table class="table table-bordered table-sm">
+		    <%
+		    	MenuDAO menuDAO = new MenuDAO();
+				ArrayList<Menu> list = menuDAO.getMenu(date1, date2);
+				for(int i = 0; i < list.size(); i++){%>
+	    	<thead>
+		    	<tr>
+		    		<td><%= list.get(i).getDate() %></td>
+		    	</tr>
+	    	</thead>
+	    	<tbody>
+		    	<tr>
+		    		<td><%if(list.get(i).getCode() == 1){out.println(list.get(i).getMenu());} %></td>
+		    	</tr>
+		    	<tr>
+		    		<td><%if(list.get(i).getCode() == 2){out.println(list.get(i).getMenu());} %></td>
+		    	</tr>
+		    	<tr>
+		    		<td><%if(list.get(i).getCode() == 3){out.println(list.get(i).getMenu());} %></td>
+		    	</tr>
+		   	 <%} %>
+		    </tbody>
+		  </table>
+		</div>
 	</div>
-	<%
-	Connection conn=null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;	
-	try{
-		Context initCtx = new InitialContext();
-		Context envCtx = (Context)initCtx.lookup("java:comp/env");
-		DataSource ds = (DataSource)envCtx.lookup("basicjsp");//connection하는 곳
-		conn = ds.getConnection();	
-		
-		pstmt = conn.prepareStatement("select menu from menu");
-		rs = pstmt.executeQuery();
-		
-		while(rs.next()){
-			String menu = rs.getString("menu");
-	%>
-			<tr>
-				<td><%= menu %></td>
-			</tr>
-			
-	<%	}
-	}
-	catch(Exception e){
-		out.println("급식 로딩 실패");
-		e.printStackTrace();
-	}
-	finally{
-		if(pstmt!=null){ try{ pstmt.close(); } catch(Exception e){ e.printStackTrace(); } }
-		if(conn!=null){ try{ conn.close(); } catch(Exception e){ e.printStackTrace(); } }
-		if(rs!=null){ try{ rs.close(); } catch(Exception e){ e.printStackTrace(); } }
-	}%>
+	
 </body>
 </html>

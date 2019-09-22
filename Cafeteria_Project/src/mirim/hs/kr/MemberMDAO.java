@@ -41,7 +41,6 @@ public class MemberMDAO {
 		return -1;
 	}
 	public int login(String email, String password) {
-		System.out.println(email  + "/" + password);
 		try {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context)initCtx.lookup("java:comp/env");
@@ -66,7 +65,60 @@ public class MemberMDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			if(pstmt!=null){ try{ pstmt.close(); } catch(Exception e){ e.printStackTrace(); } }
+			if(conn!=null){ try{ conn.close(); } catch(Exception e){ e.printStackTrace(); } }
+			if(rs!=null){ try{ rs.close(); } catch(Exception e){ e.printStackTrace(); } }
 		}
 		return -2; 
+	}
+	public MemberM bmi(String email) {
+		try {
+			Context initCtx = new InitialContext();
+			Context envCtx = (Context)initCtx.lookup("java:comp/env");
+			DataSource ds = (DataSource)envCtx.lookup("basicjsp");//connection하는 곳
+			conn = ds.getConnection();
+			
+			pstmt = conn.prepareStatement("SELECT  WEIGHT, HEIGHT FROM MEMBERM WHERE EMAIL = ?");
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				MemberM user = new MemberM();
+				user.setWeight(rs.getInt(1));
+				user.setHeight(rs.getInt(2));
+				return user;
+			}
+			return null;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if(pstmt!=null){ try{ pstmt.close(); } catch(Exception e){ e.printStackTrace(); } }
+			if(conn!=null){ try{ conn.close(); } catch(Exception e){ e.printStackTrace(); } }
+			if(rs!=null){ try{ rs.close(); } catch(Exception e){ e.printStackTrace(); } }
+		}
+		return null; 
+	}
+	public int update_user(MemberM member) {
+		try {
+			Context initCtx = new InitialContext();
+			Context envCtx = (Context)initCtx.lookup("java:comp/env");
+			DataSource ds = (DataSource)envCtx.lookup("basicjsp");//connection하는 곳
+			conn = ds.getConnection();
+			
+			pstmt = conn.prepareStatement("update memberm set weight = ?, height = ?  WHERE EMAIL = ?");
+			pstmt.setInt(1, member.getWeight());
+			pstmt.setInt(2, member.getHeight());
+			pstmt.setString(3, member.getEmail());
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if(pstmt!=null){ try{ pstmt.close(); } catch(Exception e){ e.printStackTrace(); } }
+			if(conn!=null){ try{ conn.close(); } catch(Exception e){ e.printStackTrace(); } }
+			if(rs!=null){ try{ rs.close(); } catch(Exception e){ e.printStackTrace(); } }
+		}
+		return -1;
 	}
 }

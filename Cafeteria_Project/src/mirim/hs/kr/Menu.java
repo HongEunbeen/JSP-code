@@ -6,6 +6,20 @@ public class Menu {
 	private String menu;
 	private String kcal;
 	private String info;
+	public Menu() {
+		
+	}
+	public Menu(int code, String date, String menu) {
+		this.code = code;
+		this.date = date;
+		this.menu = menu;
+	}
+	public Menu(String date, int code, String info, String kcal) {
+		this.code = code;
+		this.date = date;
+		this.info = info;
+		this.kcal = kcal;
+	}
 	public int getCode() {
 		return code;
 	}

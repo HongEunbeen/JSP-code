@@ -12,6 +12,11 @@ public class MemberM {
 		this.email = email;
 		this.password = password;
 	}
+	public MemberM(int weight, int height) {
+		super();
+		this.weight = weight;
+		this.height = height;
+	}
 	
 	public String getEmail() {
 		return email;
