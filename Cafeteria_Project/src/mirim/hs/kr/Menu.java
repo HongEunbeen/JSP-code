@@ -6,6 +6,7 @@ public class Menu {
 	private String menu;
 	private String kcal;
 	private String info;
+
 	private String number;
 	public String getNumber() {
 		return number;
@@ -13,6 +14,7 @@ public class Menu {
 	public void setNumber(String number) {
 		this.number = number;
 	}
+
 	public Menu() {
 		
 	}

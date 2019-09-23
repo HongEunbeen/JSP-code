@@ -1,4 +1,4 @@
-<%@page import="java.io.PrintWriter"%>
+
 <%@page import="mirim.hs.kr.MenuDAO"%>
 <%@page import="mirim.hs.kr.Menu"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,8 +26,8 @@
 <%
 		String userID = null;
 		String date1 = null;
+
 		String code = null;
-		
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
@@ -92,7 +92,7 @@
 			    	<option value="2">중식</option>
 			    	<option value="3">석식</option>
 			    </select>
-			
+
 			  </div>
 			</div>
 			  <div class="input-group mb-3">
@@ -146,6 +146,7 @@
 		    		<td><%=list.get(i).getKcal() %></td>
 		    	</tr>
 		    	<%}%>
+
 		   	 <%} %>
 		    </tbody>
 		  </table>

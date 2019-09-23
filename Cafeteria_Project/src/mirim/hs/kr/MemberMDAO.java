@@ -146,5 +146,4 @@ public class MemberMDAO {
 		}
 		return null;
 	}
-
 }

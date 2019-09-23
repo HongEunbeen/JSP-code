@@ -1,6 +1,5 @@
 package mirim.hs.kr;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,16 +14,15 @@ public class MenuDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;	
 	
-	public ArrayList<Menu> getMenu(String date1, String code) {
-		System.out.println(date1 + code);
+	public ArrayList<Menu> getMenu(String date1, String date2) {
+		System.out.println(date1 + date2);
 		ArrayList<Menu> list = new ArrayList<Menu>();
-		String SQL = "select code, date, menu, info, kcal from menu";
+		String SQL = "select code, date, menu from menu";
 		try{
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context)initCtx.lookup("java:comp/env");
 			DataSource ds = (DataSource)envCtx.lookup("basicjsp");//connection하는 곳
 			conn = ds.getConnection();	
-		
 			if(date1 != null && !date1.equals("") && code != null && !code.equals("")){
 				SQL += " where date_format(date,'%Y-%m-%d') = '" + date1+ "' and code = '" + code + "' order by date, code";
 			}else {
@@ -40,6 +38,7 @@ public class MenuDAO {
 				menu.setMenu(rs.getString(3));
 				menu.setInfo(rs.getString(4));
 				menu.setKcal(rs.getString(5));
+
 				
 				list.add(menu);
 			}		
@@ -55,6 +54,7 @@ public class MenuDAO {
 	}
 	public ArrayList<Menu> getInfo(String date1, String code) {
 		System.out.println(date1 + code);
+		System.out.println(date1 + date2);
 		ArrayList<Menu> list = new ArrayList<Menu>();
 		String SQL = "select date, code, info ,kcal from menu";
 		try{
@@ -66,7 +66,6 @@ public class MenuDAO {
 				SQL += " where date_format(date,'%Y-%m-%d') = '" + date1+ "' and code = '" + code + "' order by date, code";
 			}else {
 				SQL += " order by date, code";
-			}
 			pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

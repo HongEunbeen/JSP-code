@@ -1,4 +1,4 @@
-<%@page import="mirim.hs.kr.MemberMDAO"%>
+
 <%@page import="mirim.hs.kr.MenuDAO"%>
 <%@page import="mirim.hs.kr.Menu"%>
 <%@page import="java.util.ArrayList"%>
@@ -73,11 +73,11 @@
 	</nav>
 	<div class="container">
 	    <div class="row">
-		  <h2>오늘의 급식</h2>
 		  <p>미림여자정보과학고등학교</p>            
 		  <table class="table table-bordered table-sm">
 		    <%
 		    	MenuDAO menuDAO = new MenuDAO();
+
 				MemberMDAO membermDAO = new MemberMDAO();
 				String userNum = membermDAO.getNumber(userID);
 		   		ArrayList<Menu> list = menuDAO.getToday();
@@ -133,6 +133,7 @@
 		    		<td><%=list.get(i).getKcal() %></td>
 		    	</tr>
 		    	<%}%>
+
 		   	 <%} %>
 		    </tbody>
 		  </table>
