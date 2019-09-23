@@ -1,3 +1,7 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="mirim.hs.kr.MenuDAO"%>
+<%@page import="mirim.hs.kr.Menu"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page import="java.sql.*, javax.sql.*, javax.naming.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,27 +25,33 @@
 <body>
 <%
 		String userID = null;
+		String date1 = null;
+		String code = null;
+		
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
+
+		if (request.getParameter("date1") != null) {
+			date1 = (String) request.getParameter("date1");
+		}
+		if (request.getParameter("code") != null) {
+			code = (String) request.getParameter("code");
+		}
+		
 	%>
 	<div class="jumbotron text-center" style="margin-bottom:0">
 	  <h1>급식 알리미</h1>
 	  <p>미림여자정보과학고등학교 급식 알리미</p> 
 	</div>
 	
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	  <a class="navbar-brand" href="#">Navbar</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	<nav class="navbar navbar-expand-sm bg-light justify-content-center">
 	    <ul class="navbar-nav nav-justified">
 	      <li class="nav-item active">
 	        <a class="nav-link" href="index.jsp">급식 검색하기</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="cafeteria.jsp">급식표 보기</a>
+	        <a class="nav-link" href="cafeteria.jsp">오늘의 급식 보기</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="bmi.jsp">BMI 보기</a>
@@ -65,16 +75,24 @@
 			}
 			%>  
 	      
-	    </ul>
-	  </div>  
+	    </ul>  
 	</nav>
+	
 	<div class="container">
 	    <div class="row">
-	    	<form action = "indexProc.jsp" method ="post">
+	    	<form action = "index.jsp" method ="get">
 	    	  <div class="input-group mb-3">
 			  <label for="example-date-input" class="col-2 col-form-label">Date</label>
-			  <div class="col-10">
-			    <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+			  <div class="col-5">
+			    <input class="form-control" type="date" name="date1" min="2019-09-01" max="2019-09-30" id="example-date-input" value="<%=date1%>">
+			  </div>
+			  <div class="col-5">
+			    <select class="form-control"name="code" value="<%=code%>">
+			    	<option value="1">조식</option>
+			    	<option value="2">중식</option>
+			    	<option value="3">석식</option>
+			    </select>
+			
 			  </div>
 			</div>
 			  <div class="input-group mb-3">
@@ -82,37 +100,57 @@
 			</div>
 	    	</form>
 	    </div>
+	    <div class="row">
+		  <h2>9월 급식</h2>
+		  <p>미림여자정보과학고등학교</p>            
+		  <table class="table table-bordered table-sm">
+		    <%
+		    	MenuDAO menuDAO = new MenuDAO();
+				ArrayList<Menu> list = menuDAO.getMenu(date1, code);
+				if(list == null){
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('급식이 존재하지 않습니다.')");
+					script.println("location.href = 'index.jsp'");
+					script.println("</script>");
+				}
+				for(int i = 0; i < list.size(); i++){
+				%>
+	    	<thead>
+		    	<tr>
+		    		<td colspan="4"><%= list.get(i).getDate() %></td>
+		    	</tr>
+	    	</thead>
+	    	<tbody>
+	    		<%if(list.get(i).getCode() == 1){%>
+		    	<tr>
+		    		<td><%="아침" %></td>
+		    		<td><%=list.get(i).getMenu() %></td>
+		    		<td><%=list.get(i).getInfo() %></td>
+		    		<td><%=list.get(i).getKcal() %></td>
+		    	</tr>
+		    	<%}%>
+		    	<%if(list.get(i).getCode() == 2){%>
+		    	<tr>
+		    		<td><%="점심" %></td>
+		    		<td><%=list.get(i).getMenu() %></td>
+		    		<td><%=list.get(i).getInfo() %></td>
+		    		<td><%=list.get(i).getKcal() %></td>
+		    	</tr>
+		    	<%}%>
+		    	<%if(list.get(i).getCode() == 3){%>
+		    	<tr>
+		    		<td><%="저녁" %></td>
+		    		<td><%=list.get(i).getMenu() %></td>
+		    		<td><%=list.get(i).getInfo() %></td>
+		    		<td><%=list.get(i).getKcal() %></td>
+		    	</tr>
+		    	<%}%>
+		   	 <%} %>
+		    </tbody>
+		  </table>
+		</div>
 	</div>
-	<%
-	Connection conn=null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;	
-	try{
-		Context initCtx = new InitialContext();
-		Context envCtx = (Context)initCtx.lookup("java:comp/env");
-		DataSource ds = (DataSource)envCtx.lookup("basicjsp");//connection하는 곳
-		conn = ds.getConnection();	
-		
-		pstmt = conn.prepareStatement("select menu from menu");
-		rs = pstmt.executeQuery();
-		
-		while(rs.next()){
-			String menu = rs.getString("menu");
-	%>
-			<tr>
-				<td><%= menu %></td>
-			</tr>
-			
-	<%	}
-	}
-	catch(Exception e){
-		out.println("급식 로딩 실패");
-		e.printStackTrace();
-	}
-	finally{
-		if(pstmt!=null){ try{ pstmt.close(); } catch(Exception e){ e.printStackTrace(); } }
-		if(conn!=null){ try{ conn.close(); } catch(Exception e){ e.printStackTrace(); } }
-		if(rs!=null){ try{ rs.close(); } catch(Exception e){ e.printStackTrace(); } }
-	}%>
+	
 </body>
 </html>

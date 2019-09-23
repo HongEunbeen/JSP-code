@@ -6,11 +6,23 @@ public class MemberM {
 	private String name;
 	private int height;
 	private int weight;
+	private String number;
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
 	public MemberM() {}
 	public MemberM(String email, String password) {
 		super();
 		this.email = email;
 		this.password = password;
+	}
+	public MemberM(int weight, int height) {
+		super();
+		this.weight = weight;
+		this.height = height;
 	}
 	
 	public String getEmail() {

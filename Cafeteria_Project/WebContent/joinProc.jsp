@@ -12,7 +12,6 @@
 <jsp:setProperty name="member" property="name"/>
 <jsp:setProperty name="member" property="weight"/>
 <jsp:setProperty name="member" property="height"/>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,9 +19,14 @@
 		<title>jsp 게시판 웹사이트</title>
 	</head>
 	<body>
-		request.setCharacterEncoding("UTF-8");
+	
+		
 		<%
-		System.out.println(member.getEmail() +"/"+ member.getPassword() +"/"+ member.getName() +"/"+  member.getWeight() +"/"+   member.getHeight());
+		request.setCharacterEncoding("UTF-8");
+		String arr[] = request.getParameterValues("number");
+		
+		
+		
 		if (member.getEmail() == null || member.getPassword() == null || member.getName() == null ||  member.getWeight() == 0 ||  member.getHeight() == 0){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -36,6 +40,11 @@
 				script.println("history.back()");
 			script.println("</script>");
 		}else{
+			String input = null;
+			for(String ar : arr){
+				input += (ar + ".");
+			}
+			member.setNumber(input);
 			MemberMDAO membermDAO = new MemberMDAO(); //인스턴스생성
 			int result = membermDAO.join(member);				
 			if(result == -1){ // 아이디가 기본키기. 중복되면 오류.
@@ -47,9 +56,10 @@
 			}
 			//가입성공
 			else {
+				
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-					script.println("location.href = 'index.jsp'");
+					script.println("location.href = 'login.jsp'");
 				script.println("</script>");
 			}
 		}

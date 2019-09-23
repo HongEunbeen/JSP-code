@@ -22,32 +22,37 @@
 	  <h1>급식 알리미</h1>
 	  <p>미림여자정보과학고등학교 급식 알리미</p> 
 	</div>
-	
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	  <a class="navbar-brand" href="#">Navbar</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	<nav class="navbar navbar-expand-sm bg-light justify-content-center">
 	    <ul class="navbar-nav nav-justified">
 	      <li class="nav-item active">
 	        <a class="nav-link" href="index.jsp">급식 검색하기</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">급식표 보기</a>
+	        <a class="nav-link" href="cafeteria.jsp">오늘의 급식 보기</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">BMI 보기</a>
-	      </li>   
-	      <li class="nav-item dropdown">
-		    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">로그인</a>
-		    <div class="dropdown-menu">
-		      <a class="dropdown-item" href="login.jsp">로그인</a>
-		      <a class="dropdown-item" href="join.jsp">회원가입</a>
-		    </div>
-		  </li> 
-	    </ul>
-	  </div>  
+	        <a class="nav-link" href="bmi.jsp">BMI 보기</a>
+	      </li> 
+	      <%if (userID == null) {
+			%>
+				<li class="nav-item dropdown">
+				    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">로그인</a>
+				    <div class="dropdown-menu">
+				      <a class="dropdown-item" href="login.jsp">로그인</a>
+				      <a class="dropdown-item" href="join.jsp">회원가입</a>
+				    </div>
+				  </li> 
+		<%
+			} else {
+		%>
+			 <li class="nav-item">
+		        <a class="nav-link" href="logout.jsp">로그아웃하기</a>
+		      </li> 
+		<%
+			}
+			%>  
+	      
+	    </ul>  
 	</nav>
   <div class="container">
     <div class="row">
@@ -68,12 +73,7 @@
 				    	<span class="input-group-text">password</span>
 				 	</div>
 	                <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
-	            </div>
-              <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Remember password</label>
-              </div>
-              
+	           </div>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">로그인</button>
               <hr class="my-4">
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button">회원가입</button>
