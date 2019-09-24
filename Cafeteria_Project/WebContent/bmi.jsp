@@ -101,22 +101,22 @@
 	  	double bmi =  d_w / (d_h*d_h);
 	  	System.out.println(bmi);
 	  	if(bmi < 17.96){
-	  		out.print("<h2>bmi 지수가 "+ bmi +"로 저체중입니다.</h2>");
+	  		out.print("<h2>bmi 지수가 "+ Math.round(bmi*100)/100.0 +"로 저체중입니다.</h2>");
 	  		out.print("<div class='progress' style='height:30px'>");
 	  		out.print("<div class='progress-bar' style='width:20%;height:30px'></div>");
 	  		out.print("</div>");
 	  	}else if(bmi < 23.98){
-	  		out.print("<h2>bmi 지수가 "+ bmi +"로 정상입니다.</h2>");
+	  		out.print("<h2>bmi 지수가 "+ Math.round(bmi*100)/100.0 +"로 정상입니다.</h2>");
 	  		out.print("<div class='progress' style='height:30px'>");
 	  		out.print("<div class='progress-bar bg-success' style='width:50%;height:30px'></div>");
 	  		out.print("</div>");
 	  	}else if(bmi < 25){
-	  		out.print("<h2>bmi 지수가 "+ bmi +"로 과체중입니다.</h2>");
+	  		out.print("<h2>bmi 지수가 "+ Math.round(bmi*100)/100.0 +"로 과체중입니다.</h2>");
 	  		out.print("<div class='progress' style='height:30px'>");
 	  		out.print("<div class='progress-bar bg-warning' style='width:70%;height:30px'></div>");
 	  		out.print("</div>");
 	  	}else{
-	  		out.print("<h2>bmi 지수가 "+ bmi +"로 비만입니다.</h2>");
+	  		out.print("<h2>bmi 지수가 "+ Math.round(bmi*100)/100.0 +"로 비만입니다.</h2>");
 	  		out.print("<div class='progress' style='height:30px'>");
 	  		out.print("<div class='progress-bar bg-danger' style='width:90%;height:30px'></div>");
 	  		out.print("</div>");
