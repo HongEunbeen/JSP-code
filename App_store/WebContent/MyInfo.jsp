@@ -19,15 +19,14 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		UserDAO userDAO = new UserDAO();
+		MemberDAO userDAO = new MemberDAO();
 		
-		User user = new User();
+		Member user = new Member();
 		if(userDAO.checkCom(userID)){
 			user = userDAO.getUser(userID);
 		}else{
 			user = userDAO.getUser_Com(userID);
 		}
-		
 	%>
 
 	<!-- 네비게이션  -->
@@ -119,10 +118,10 @@
 					<div class="form-group" style="text-align: center;">
 						<div class="btn-group" data-toggle="buttons">
 							<label class="btn btn-primary active"> 
-								<input type="radio" name="gender" autocomplete="off" value="남자" <%if(user.getGender().equals("남자")){ %> checked = "checked"<%}%>>남자
+								<input type="radio" name="gender" autocomplete="off" value="남자" <%if(user.getGender().equals("남자")){%> checked = "checked"<%}%>>남자
 							</label> 
 							<label class="btn btn-primary"> 
-								<input type="radio" name="gender" autocomplete="off" value="여자" <%if(user.getGender().equals("여자")){ %> checked = "checked"<%}%>>여자
+								<input type="radio" name="gender" autocomplete="off" value="여자" <%if(user.getGender().equals("여자")){%> checked = "checked"<%}%>>여자
 							</label>
 						</div>
 					</div>
@@ -132,12 +131,12 @@
 					    <select class="form-control" id="age" name = "age">
 					      <%
 					      	for(int i = 0; i < 100; i++){
-					      		if(i == Integer.parseInt(user.getAge())){
-					      			out.println("<option value = '"+i+"' selected = 'selected'>" + i + "</option>");
-					      		}else{
-					      			out.println("<option value = '"+i+"'>" + i + "</option>");
-					      		}	      		
-					      	}
+					      			      		if(i == Integer.parseInt(user.getAge())){
+					      			      			out.println("<option value = '"+i+"' selected = 'selected'>" + i + "</option>");
+					      			      		}else{
+					      			      			out.println("<option value = '"+i+"'>" + i + "</option>");
+					      			      		}	      		
+					      			      	}
 					      %>
 					    </select>
 					</div>
@@ -162,20 +161,23 @@
 				        <th>리뷰제목</th>
 				        <th>별점</th>
 			      	</tr>
-			      <%for (int i = 0; i < reviewList.size(); i++) { 	
+			      <%
+			      	for (int i = 0; i < reviewList.size(); i++) {
 			      %>
 						<tr>
 							<td colspan="3"><%=reviewList.get(i)%></td>
 						</tr>
-						<%} %>
+						<%
+							}
+						%>
 			    </tbody>
 			 </table>
 	  	</div>
-	  	<%if(user.getCompany() != null) {
-		  	AppDAO appDAO = new AppDAO();
-		  	ArrayList<App> listMyApp= appDAO.getMyApp(userID);
-			
-		%>
+	  	<%
+	  		if(user.getCompany() != null) {
+	  			  	AppDAO appDAO = new AppDAO();
+	  			  	ArrayList<App> listMyApp= appDAO.getMyApp(userID);
+	  	%>
 			<div class="row">
 				<table class="table table-striped">
 				    <thead>
@@ -188,14 +190,17 @@
 					        <th>앱 이름</th>
 					        <th>다운받은 유저의 이름</th>
 				      	</tr>
-				       <%for (int i = 0; i < listMyApp.size(); i++) { 
-				    	   String listMyAppUser = appDAO.getMyAppUser(listMyApp.get(i).getNo());
-				       	%>
+				       <%
+				       	for (int i = 0; i < listMyApp.size(); i++) { 
+				       		    	   String listMyAppUser = appDAO.getMyAppUser(listMyApp.get(i).getNo());
+				       %>
 						<tr>
 							<td><%=listMyApp.get(i).getTitle()%></td>
 							<td><%=listMyAppUser%></td>
 						</tr>
-						<%} %>
+						<%
+							}
+						%>
 				    </tbody>
 				 </table>
 				  <div class="modal fade" id="downlist" role="dialog">
@@ -206,7 +211,9 @@
 						          	<h4 class="modal-title">다운로드 진행한 유저</h4>
 						        </div>
 						        <div class="modal-body">
-						          	<p><% %></p>
+						          	<p><%
+						          		
+						          	%></p>
 						        </div>
 						        <div class="modal-footer">
 						         	 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -216,8 +223,8 @@
 			  	</div>
 		 	</div>
 		 	<%
-		 		ArrayList<User> list = userDAO.getComPeople(user.getCompany());
-		 	if(list != null){
+		 		ArrayList<Member> list = userDAO.getComPeople(user.getCompany());
+		 			 	if(list != null){
 		 	%>
 		  	<div class="row">
 				<table class="table table-striped">

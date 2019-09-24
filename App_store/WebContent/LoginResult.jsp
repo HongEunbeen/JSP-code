@@ -1,9 +1,11 @@
-<%@page import="mirim.hs.kr.UserDAO"%>
+<%@page import="mirim.hs.kr.MemberDAO"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="user" class="mirim.hs.kr.User" scope="page" />
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+<jsp:useBean id="user" class="mirim.hs.kr.Member" scope="page" />
 <jsp:setProperty name="user" property="email" />
 <jsp:setProperty name="user" property="password" /> 
 
@@ -17,13 +19,13 @@
 	<body>
 		<%
 			request.setCharacterEncoding("UTF-8");
-			UserDAO userDAO = new UserDAO(); //인스턴스생성
+			MemberDAO userDAO = new MemberDAO(); //인스턴스생성
 			int result = userDAO.login(user.getEmail(), user.getPassword());
 			
 			//로그인 성공
 			if(result == 1){
-				session.setAttribute("userID", user.getEmail()); 
-				%>
+				session.setAttribute("userID", user.getEmail());
+		%>
 				<jsp:forward page = "index.jsp"/>
 				<%
 			}

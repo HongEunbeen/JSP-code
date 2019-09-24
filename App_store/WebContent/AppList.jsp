@@ -1,4 +1,4 @@
-<%@page import="mirim.hs.kr.User"%>
+<%@page import="mirim.hs.kr.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="mirim.hs.kr.App"%>
 <%@page import="mirim.hs.kr.AppDAO"%>

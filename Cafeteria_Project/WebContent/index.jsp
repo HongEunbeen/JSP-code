@@ -1,4 +1,5 @@
 
+<%@page import="java.io.PrintWriter"%>
 <%@page import="mirim.hs.kr.MenuDAO"%>
 <%@page import="mirim.hs.kr.Menu"%>
 <%@page import="java.util.ArrayList"%>
@@ -79,35 +80,28 @@
 	</nav>
 	
 	<div class="container">
-	    <div class="row">
 	    	<form action = "index.jsp" method ="get">
-	    	  <div class="input-group mb-3">
-			  <label for="example-date-input" class="col-2 col-form-label">Date</label>
-			  <div class="col-5">
-			    <input class="form-control" type="date" name="date1" min="2019-09-01" max="2019-09-30" id="example-date-input" value="<%=date1%>">
+			  <div>
+			    <input class="form-control" type="date" name="date1" min="2019-09-01" max="2019-09-30"value="<%=date1%>">
 			  </div>
-			  <div class="col-5">
-			    <select class="form-control"name="code" value="<%=code%>">
+			  <div>
+			    <select class="form-control"name="code">
 			    	<option value="1">조식</option>
 			    	<option value="2">중식</option>
 			    	<option value="3">석식</option>
 			    </select>
-
-			  </div>
 			</div>
 			  <div class="input-group mb-3">
 			  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">찾기</button>
 			</div>
 	    	</form>
-	    </div>
-	    <div class="row">
 		  <h2>9월 급식</h2>
 		  <p>미림여자정보과학고등학교</p>            
 		  <table class="table table-bordered table-sm">
 		    <%
 		    	MenuDAO menuDAO = new MenuDAO();
 				ArrayList<Menu> list = menuDAO.getMenu(date1, code);
-				if(list == null){
+				if(list.isEmpty()){
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('급식이 존재하지 않습니다.')");
@@ -118,7 +112,7 @@
 				%>
 	    	<thead>
 		    	<tr>
-		    		<td colspan="4"><%= list.get(i).getDate() %></td>
+		    		<th colspan="4"><%= list.get(i).getDate() %></th>
 		    	</tr>
 	    	</thead>
 	    	<tbody>
@@ -151,7 +145,6 @@
 		    </tbody>
 		  </table>
 		</div>
-	</div>
 	
 </body>
 </html>

@@ -1,5 +1,5 @@
 #Tomcat publish data
-#Mon Sep 23 15:58:45 KST 2019
+#Tue Sep 24 14:34:26 KST 2019
 org.eclipse.jst.jee.server\:chapter08=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\chapter08
 org.eclipse.jst.jee.server\:chapter10=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\chapter10
 org.eclipse.jst.jee.server\:Template=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\Template
@@ -12,6 +12,7 @@ org.eclipse.jst.jee.server\:EL_study=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpweb
 org.eclipse.jst.jee.server\:Page_Project=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\Page_Project
 org.eclipse.jst.jee.server\:Login_Project=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\Login_Project
 org.eclipse.jst.jee.server\:StartJSP=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\StartJSP
+org.eclipse.jst.jee.server\:Event_Project=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\Event_Project
 org.eclipse.jst.jee.server\:JSTL_study=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\JSTL_study
 org.eclipse.jst.jee.server\:chapter09=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\chapter09
 org.eclipse.jst.jee.server\:Study0415=C\:\\JSP_Study\\apache-tomcat-9.0.5\\wtpwebapps\\Study0415

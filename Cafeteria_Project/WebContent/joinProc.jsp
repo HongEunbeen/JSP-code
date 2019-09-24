@@ -40,11 +40,15 @@
 				script.println("history.back()");
 			script.println("</script>");
 		}else{
-			String input = null;
-			for(String ar : arr){
-				input += (ar + ".");
+			String input = "";
+			if(arr != null){
+				for(String ar : arr){
+					input += (ar + ".");
+				}
 			}
+			
 			member.setNumber(input);
+			
 			MemberMDAO membermDAO = new MemberMDAO(); //인스턴스생성
 			int result = membermDAO.join(member);				
 			if(result == -1){ // 아이디가 기본키기. 중복되면 오류.

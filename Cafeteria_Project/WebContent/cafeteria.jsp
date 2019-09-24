@@ -1,4 +1,6 @@
 
+<%@page import="java.io.PrintWriter"%>
+<%@page import="mirim.hs.kr.MemberMDAO"%>
 <%@page import="mirim.hs.kr.MenuDAO"%>
 <%@page import="mirim.hs.kr.Menu"%>
 <%@page import="java.util.ArrayList"%>
@@ -72,45 +74,65 @@
 	    </ul>  
 	</nav>
 	<div class="container">
-	    <div class="row">
-		  <p>미림여자정보과학고등학교</p>            
-		  <table class="table table-bordered table-sm">
-		    <%
-		    	MenuDAO menuDAO = new MenuDAO();
-
-				MemberMDAO membermDAO = new MemberMDAO();
-				String userNum = membermDAO.getNumber(userID);
-		   		ArrayList<Menu> list = menuDAO.getToday();
-				System.out.println(userNum);
-				
-				String[] userNum_arr = userNum.split(".");
-				System.out.println(userNum_arr[1]);
-				for(String a : userNum_arr){
-					System.out.println(a + "d안뇽");
+		  <h3>미림여자정보과학고등학교</h3>
+		  <p>
+		  	<%
+			  	MenuDAO menuDAO = new MenuDAO();
+		   	  	ArrayList<Menu> list = menuDAO.getToday();
+			   	if(list.isEmpty()){
+					PrintWriter script = response.getWriter();
+					script.println("<script>");
+					script.println("alert('급식이 존재하지 않습니다.')");
+					script.println("location.href = 'index.jsp'");
+					script.println("</script>");
 				}
+		   	  	String[] userNum_arr = null;	
+				if (userID != null) {
+					MemberMDAO membermDAO = new MemberMDAO();
+					String userNum = membermDAO.getNumber(userID);
+					if(userNum != null && !userNum.equals("")){
+						out.println("<mark>나의 알러지는 "+ userNum +"</mark>");
+						userNum_arr = userNum.split("\\.");
+					}
+				}
+			%>      
+		 	 <table class="table table-bordered table-sm">
+		    <%
 				for(int i = 0; i < list.size(); i++){
-					String[] menuNum_arr = list.get(i).getNumber().split(".");
-					
-					/* for(String u_num : userNum_arr){
-		    			System.out.println(u_num + "안뇽");
-		    			for(String m_num : menuNum_arr){
-		    				if(u_num.equals(m_num)){
-		    					System.out.println(m_num + "알러지 발생");
-		    				}
-		    			}
-		    		} */
+					boolean color[] = new boolean[3];
+					String[] menuNum_arr = list.get(i).getNumber().split("\\."); 
+					if(userID != null && userNum_arr != null){
+					 	for(String u_num : userNum_arr){
+			    			for(String m_num : menuNum_arr){
+			    				if(u_num.equals(m_num)){
+			    					if(list.get(i).getCode() == 1){
+			    						color[0] = true;
+			    						System.out.println("조식 "+m_num + "알러지 발생");
+			    					}else if(list.get(i).getCode() == 2){
+			    						color[1] = true;
+			    						System.out.println("중식 "+m_num + "알러지 발생");
+			    					}else if(list.get(i).getCode() == 3){
+			    						color[2] = true;
+			    						System.out.println("석식 "+m_num + "알러지 발생");
+			    					}
+			    					
+			    					break;
+			    				}
+			    			}
+			    		}
+					}
 				%>
 				
 	    	<thead>
 		    	<tr>
-		    		<td colspan="4"><%= list.get(i).getDate() %></td>
+		    		<th colspan="4"><%= list.get(i).getDate() %></th>
 		    	</tr>
-	    	</thead>
+	    	</thead> 
 	    	
 	    	<tbody>
 		    	<%if(list.get(i).getCode() == 1){
 		    		%>
-		    	<tr>
+		    	<tr <%if(color[0]){%>class="table-danger"<%} %>>
 		    		<td><%="아침" %></td>
 		    		<td><%=list.get(i).getMenu() %></td>
 		    		<td><%=list.get(i).getInfo() %></td>
@@ -118,7 +140,7 @@
 		    	</tr>
 		    	<%}%>
 		    	<%if(list.get(i).getCode() == 2){%>
-		    	<tr>
+		    	<tr <%if(color[1]){%>class="table-danger"<%} %>>
 		    		<td><%="점심" %></td>
 		    		<td><%=list.get(i).getMenu() %></td>
 		    		<td><%=list.get(i).getInfo() %></td>
@@ -126,7 +148,7 @@
 		    	</tr>
 		    	<%}%>
 		    	<%if(list.get(i).getCode() == 3){%>
-		    	<tr>
+		    	<tr <%if(color[2]){%>class="table-danger"<%} %>>
 		    		<td><%="저녁" %></td>
 		    		<td><%=list.get(i).getMenu() %></td>
 		    		<td><%=list.get(i).getInfo() %></td>
@@ -138,7 +160,6 @@
 		    </tbody>
 		  </table>
 		</div>
-	</div>
 	
 </body>
 </html>

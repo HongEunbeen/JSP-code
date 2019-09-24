@@ -74,8 +74,7 @@
 	</nav>
 	<div class="container">
 	  <h2>BMI 계산</h2>
-	  <p>회원가입시 작성된 몸무게와 키로 bmi를 계산합니다.</p> 
-	  <div class="row">
+	  <p>회원가입시 작성된 몸무게와 키로 bmi를 계산합니다.</p>
 		<button type="button" class="btn btn-info btn-lg" data-toggle="collapse" data-target="#modifyUser">정보수정</button>
 	 	<div id="modifyUser" class="collapse">
 			<form method="post" action="UserModifyResult.jsp">
@@ -84,16 +83,16 @@
 					<input type="text" class="form-control" name="email" value="<%=userID%>" readonly>
 				</div>
 				<div class="form-group">
+					<label>몸무게</label>
 					<input type="number" class="form-control" name="weight" value="<%=w%>">
 				</div>
 				<div class="form-group">
+					<label>키</label>
 					<input type="number" class="form-control" name="height"value="<%=h%>">
 				</div>
 				<input type="submit" class="btn btn-primary form-control" value="회원정보 수정">
 			</form>
 		</div>
-	  </div>
-	  <div class="row">
 	  <%
 
 		double d_w = (double)w;
@@ -102,34 +101,28 @@
 	  	double bmi =  d_w / (d_h*d_h);
 	  	System.out.println(bmi);
 	  	if(bmi < 17.96){
-	  		out.print("<h2>저체중입니다.</h2>");
+	  		out.print("<h2>bmi 지수가 "+ bmi +"로 저체중입니다.</h2>");
 	  		out.print("<div class='progress' style='height:30px'>");
-	  		out.print("  <div class='progress-bar' style='width:20%;height:30px'></div>");
+	  		out.print("<div class='progress-bar' style='width:20%;height:30px'></div>");
 	  		out.print("</div>");
 	  	}else if(bmi < 23.98){
-	  		out.print("<h2>정상입니다.</h2>");
+	  		out.print("<h2>bmi 지수가 "+ bmi +"로 정상입니다.</h2>");
 	  		out.print("<div class='progress' style='height:30px'>");
-	  		out.print("  <div class='progress-bar bg-success' style='width:50%;height:30px'></div>");
+	  		out.print("<div class='progress-bar bg-success' style='width:50%;height:30px'></div>");
 	  		out.print("</div>");
 	  	}else if(bmi < 25){
-	  		out.print("<h2>과체중입니다.</h2>");
+	  		out.print("<h2>bmi 지수가 "+ bmi +"로 과체중입니다.</h2>");
 	  		out.print("<div class='progress' style='height:30px'>");
-	  		out.print("  <div class='progress-bar bg-warning' style='width:70%;height:30px'></div>");
+	  		out.print("<div class='progress-bar bg-warning' style='width:70%;height:30px'></div>");
 	  		out.print("</div>");
 	  	}else{
-	  		out.print("<h2>비만입니다.</h2>");
+	  		out.print("<h2>bmi 지수가 "+ bmi +"로 비만입니다.</h2>");
 	  		out.print("<div class='progress' style='height:30px'>");
-	  		out.print("  <div class='progress-bar bg-danger' style='width:90%;height:30px'></div>");
+	  		out.print("<div class='progress-bar bg-danger' style='width:90%;height:30px'></div>");
 	  		out.print("</div>");
 	  	}
 	  %>
 	  </div>
-	  <div class="row">
-	  	  
-	  </div>
-	  
-	
-	</div>
 
 </body>
 </html>

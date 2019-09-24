@@ -1,4 +1,4 @@
-<%@page import="mirim.hs.kr.UserDAO"%>
+<%@page import="mirim.hs.kr.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,14 +10,14 @@
 <body>
 	<%
 		String userID = null;
-		if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
-		
-		UserDAO userDAO = new UserDAO();
-		userDAO.delete(userID);
+			if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+			}
 			
-		session.invalidate();
+			MemberDAO userDAO = new MemberDAO();
+			userDAO.delete(userID);
+		
+			session.invalidate();
 	%>
 	<script>
 		location.href = 'index.jsp';
