@@ -46,7 +46,7 @@ public class LogonDBBean {
 		}
 	}//insertmember
 	
-	public void userCheck(String id, String passwd) throws Exception{
+	public int userCheck(String id, String passwd) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -71,6 +71,7 @@ public class LogonDBBean {
 			}else {
 				x = -1;
 			}
+			return x;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -78,5 +79,6 @@ public class LogonDBBean {
 			if(pstmt!=null){try{pstmt.close();}catch(Exception e){e.printStackTrace();}}
 			if(conn!=null){try{conn.close();}catch(Exception e){e.printStackTrace();}}
 		}
+		return x;
 	}//insertmember
 }
